@@ -26,3 +26,9 @@ The following screenshot is all the tools that I used to simulate the project us
 ![Capture](https://user-images.githubusercontent.com/63317015/106121370-7f28da00-6125-11eb-9830-90e76f027036.PNG)
 
 
+Software
+For the software part I used C++ programing language to program the microcontroller (Arduino Mega)
+Arduino is a really cool tool that allows me to control the motors, screen, and the keypad. Using programming languages.
+I’m still working on the code, what I have done so far is I ask the user to choose a planet, then I took the input from the user and the motors will start working.
+
+
