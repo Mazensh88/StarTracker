@@ -8,5 +8,6 @@ The user can command the mount to point the telescope to the celestial coordinat
 or to objects in a pre-programmed database including ones from the Messier catalogue,
 the New General Catalogue, and even major Solar System bodies (the Sun, Moon, and planets).
 
+https://github.com/Mazensh88/StarTracker/issues/1#issue-795852081
 
 
