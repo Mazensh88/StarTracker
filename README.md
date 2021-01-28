@@ -8,6 +8,21 @@ The user can command the mount to point the telescope to the celestial coordinat
 or to objects in a pre-programmed database including ones from the Messier catalogue,
 the New General Catalogue, and even major Solar System bodies (the Sun, Moon, and planets).
 
+
+Hardware
+I used a simulation software called Proteus which allows me to simulate and hardware parts and test it before purchasing it.
+Tools I need/
+1-Stepper Motors type Unipolar.
+2-Transistors
+3-Microcontroller board (Arduino Mega)
+4-Keypad
+5-LCD 4*16
+6-Cables
 ![UnipolarKnob_schlg](https://user-images.githubusercontent.com/63317015/106121148-3a04a800-6125-11eb-833c-ea0e0b87f589.png)
+
+
+
+The following screenshot is all the tools that I used to simulate the project using Proteus
+![Capture](https://user-images.githubusercontent.com/63317015/106121370-7f28da00-6125-11eb-9830-90e76f027036.PNG)
 
 
