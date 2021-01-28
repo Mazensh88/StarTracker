@@ -1,0 +1,265 @@
+
+
+#include <Keypad.h>
+#include <Wire.h>
+#include <LiquidCrystal.h>
+
+int motorPin1 = 22;
+int motorPin2 = 23;
+int motorPin3 = 24;
+int motorPin4 = 25;
+int motorPin5 = 27;
+int motorPin6 = 28;
+int motorPin7 = 29;
+int motorPin8 = 30;
+int delayTime = 500;
+
+
+/*
+int stahp = 7,stahp2=10;
+int cw = 6,cw2 = 11;
+int ccw = 8,ccw2=9;
+boolean stopped = false;
+boolean stopped2 = false;
+*/
+const byte rows = 4;
+const byte cols = 4;
+
+char keys [rows] [cols]= 
+        {
+          {'j','M','S','r'},
+          {'L','5','6','B'},
+          {'7','8','9','C'},
+          {'*','0','#','D'},
+        };
+
+    byte rowPin[rows]= {14,15,16,17};
+    byte colPin[cols]= {18,19,20,21};
+
+    Keypad kpd = Keypad( makeKeymap(keys), rowPin, colPin, rows, cols );
+    LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+void setup() 
+  {
+    pinMode(motorPin1, OUTPUT);
+    pinMode(motorPin2, OUTPUT);
+    pinMode(motorPin3, OUTPUT);
+    pinMode(motorPin4, OUTPUT);
+    pinMode(motorPin5, OUTPUT);
+    pinMode(motorPin6, OUTPUT);
+    pinMode(motorPin7, OUTPUT);
+    pinMode(motorPin8, OUTPUT);
+    // set up the LCD's number of columns and rows:
+    lcd.begin(16, 4);
+    lcd.print("Choose Planet");
+   
+  }
+
+ 
+void loop()
+  {
+   char key = kpd.getKey();
+         if(int(key) == 'j')
+         {
+          lcd.setCursor(0,3);
+              lcd.print("Going to jupiter");
+              delay(3000);
+              clearScreen();
+              int x=0;       
+              while(x<10) 
+              {
+                 stepper1R();    
+                 stepper2R();
+                 x++;
+              }
+              clearScreen();
+         }
+         else if (key == 'M')
+         {
+            lcd.setCursor(0,3);
+              lcd.print("Going to the Moon");
+              delay(3000);
+              clearScreen();
+              int x=0;       
+              while(x<10) 
+              {
+                 stepperAllMovingR();
+                 x++;
+              }
+              clearScreen();
+       
+          }
+              
+              
+            
+             
+         
+         
+     }
+        
+void clearScreen() //clear screen 
+{
+lcd.setCursor(0,3);
+lcd.print("                ");
+lcd.setCursor(0,1);
+lcd.print("                ");
+
+}
+
+
+void software_Reset() // Restarts program from beginning but does not reset the peripherals and registers
+{
+asm volatile ("  jmp 0");  
+} 
+
+void stepper1R() 
+{
+digitalWrite(motorPin1, HIGH);
+digitalWrite(motorPin2, LOW);
+digitalWrite(motorPin3, LOW);
+digitalWrite(motorPin4, LOW);
+
+delay(100);
+digitalWrite(motorPin1, LOW);
+digitalWrite(motorPin2, HIGH);
+digitalWrite(motorPin3, LOW);
+digitalWrite(motorPin4, LOW);
+
+delay(100);
+digitalWrite(motorPin1, LOW);
+digitalWrite(motorPin2, LOW);
+digitalWrite(motorPin3, HIGH);
+digitalWrite(motorPin4, LOW);
+
+delay(100);
+digitalWrite(motorPin1, LOW);
+digitalWrite(motorPin2, LOW);
+digitalWrite(motorPin3, LOW);
+digitalWrite(motorPin4, HIGH);
+delay(100);
+}
+
+
+void stepper2R()
+{
+digitalWrite(motorPin5, HIGH);
+digitalWrite(motorPin6, LOW);
+digitalWrite(motorPin7, LOW);
+digitalWrite(motorPin8, LOW);
+delay(100);
+digitalWrite(motorPin5, LOW);
+digitalWrite(motorPin6, HIGH);
+digitalWrite(motorPin7, LOW);
+digitalWrite(motorPin8, LOW);
+delay(100);
+
+digitalWrite(motorPin5, LOW);
+digitalWrite(motorPin6, LOW);
+digitalWrite(motorPin7, HIGH);
+digitalWrite(motorPin8, LOW);
+
+delay(100);
+
+digitalWrite(motorPin5, LOW);
+digitalWrite(motorPin6, LOW);
+digitalWrite(motorPin7, LOW);
+digitalWrite(motorPin8, HIGH);
+delay(100);
+
+}
+
+
+void stepper1L() 
+{
+
+digitalWrite(motorPin1, LOW);
+digitalWrite(motorPin2, LOW);
+digitalWrite(motorPin3, LOW);
+digitalWrite(motorPin4, HIGH);
+
+delay(100);
+digitalWrite(motorPin1, LOW);
+digitalWrite(motorPin2, LOW);
+digitalWrite(motorPin3, HIGH);
+digitalWrite(motorPin4, LOW);
+
+delay(100);
+digitalWrite(motorPin1, LOW);
+digitalWrite(motorPin2, HIGH);
+digitalWrite(motorPin3, LOW);
+digitalWrite(motorPin4, LOW);
+
+delay(100);
+digitalWrite(motorPin1, HIGH);
+digitalWrite(motorPin2, LOW);
+digitalWrite(motorPin3, LOW);
+digitalWrite(motorPin4, LOW);
+delay(100);
+}
+
+
+void stepper2L()
+{
+  digitalWrite(motorPin5, LOW);
+  digitalWrite(motorPin6, LOW);
+  digitalWrite(motorPin7, LOW);
+  digitalWrite(motorPin8, HIGH);
+  delay(100);
+  digitalWrite(motorPin5, LOW);
+  digitalWrite(motorPin6, LOW);
+  digitalWrite(motorPin7, HIGH);
+  digitalWrite(motorPin8, LOW);
+  delay(100);
+  digitalWrite(motorPin5, LOW);
+  digitalWrite(motorPin6, HIGH);
+  digitalWrite(motorPin7, LOW);
+  digitalWrite(motorPin8, LOW);
+  delay(100);
+  digitalWrite(motorPin5, HIGH);
+  digitalWrite(motorPin6, LOW);
+  digitalWrite(motorPin7, LOW);
+  digitalWrite(motorPin8, LOW);
+  delay(100);
+
+}
+void stepperAllMovingR()
+{
+//motor 1
+digitalWrite(motorPin1, HIGH);
+digitalWrite(motorPin2, LOW);
+digitalWrite(motorPin3, LOW);
+digitalWrite(motorPin4, LOW);
+//motor 2
+digitalWrite(motorPin5, HIGH);
+digitalWrite(motorPin6, LOW);
+digitalWrite(motorPin7, LOW);
+digitalWrite(motorPin8, LOW);
+delay(100);
+digitalWrite(motorPin1, LOW);
+digitalWrite(motorPin2, HIGH);
+digitalWrite(motorPin3, LOW);
+digitalWrite(motorPin4, LOW);
+digitalWrite(motorPin5, LOW);
+digitalWrite(motorPin6, HIGH);
+digitalWrite(motorPin7, LOW);
+digitalWrite(motorPin8, LOW);
+delay(100);
+digitalWrite(motorPin1, LOW);
+digitalWrite(motorPin2, LOW);
+digitalWrite(motorPin3, HIGH);
+digitalWrite(motorPin4, LOW);
+digitalWrite(motorPin5, LOW);
+digitalWrite(motorPin6, LOW);
+digitalWrite(motorPin7, HIGH);
+digitalWrite(motorPin8, LOW);
+delay(100);
+digitalWrite(motorPin1, LOW);
+digitalWrite(motorPin2, LOW);
+digitalWrite(motorPin3, LOW);
+digitalWrite(motorPin4, HIGH);
+digitalWrite(motorPin5, LOW);
+digitalWrite(motorPin6, LOW);
+digitalWrite(motorPin7, LOW);
+digitalWrite(motorPin8, HIGH);
+delay(100);
+}  
